@@ -2,10 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
+import Board from './components/Board';
 import TodoContainer from './components/ToDoContainer';
 
 ReactDOM.render(
-  <TodoContainer />,
+  <Board name=""/>,  
   document.getElementById('root')
 );
 
