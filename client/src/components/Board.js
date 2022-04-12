@@ -15,7 +15,7 @@ const Board = (props) => {
         setNewName(e.target.value)
     }
 
-    const addTodoContainer = (e, arg) => {
+    const addTodoContainer = (e) => {
         e.preventDefault();
         const newTodoContainer = {
             id: uuidv4(),
@@ -24,9 +24,7 @@ const Board = (props) => {
         };
         console.log(newTodoContainer)
         
-        // let todoContainersTemp = [...todoContainers, newTodoContainer];
         todoContainers.push(newTodoContainer);
-
         localStorage.setItem("todoContainers-"+name, JSON.stringify(todoContainers));
         setTodoContainers(todoContainers);
     }
@@ -46,7 +44,8 @@ const Board = (props) => {
             <div>
                 {
                     todoContainers.map(function(container){
-                        return <TodoContainer props={container}></TodoContainer>
+                        console.log(container);
+                        return <TodoContainer key={container} todos={container.todos}></TodoContainer>
                     })
                 }
             </div>

@@ -6,7 +6,8 @@ import { v4 as uuidv4 } from "uuid";
 
 class TodoContainer extends React.Component {
   state = {
-    todos: JSON.parse(localStorage.getItem("todos")) || []
+    // todos: JSON.parse(localStorage.getItem("todos")) || []
+    todos: this.props.todos
    };
 
    handleChange = (id) => {

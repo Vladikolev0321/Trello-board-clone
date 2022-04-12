@@ -6,7 +6,7 @@ import Board from './components/Board';
 import TodoContainer from './components/ToDoContainer';
 
 ReactDOM.render(
-  <Board name=""/>,  
+  <Board name="FirstBoard"/>,  
   document.getElementById('root')
 );
 
