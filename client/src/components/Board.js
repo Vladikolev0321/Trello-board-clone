@@ -4,32 +4,44 @@ import TodoContainer from "./ToDoContainer";
 
 const Board = (props) => {
     const name = props.name;
-    const [todoContainers, setTodoContainers] = useState(JSON.parse(localStorage.getItem("todoContainers-"+name)) || []);
+    
+    const containerStorage = localStorage.getItem("todoContainers-"+name);
+    const [todoContainers, setTodoContainers] = useState(JSON.parse(containerStorage) || []);
 
+    const [newName, setNewName] = useState("")
+
+    const onChange = (e) => {
+        e.preventDefault();
+        setNewName(e.target.value)
+    }
 
     const addTodoContainer = (e, arg) => {
         e.preventDefault();
         const newTodoContainer = {
             id: uuidv4(),
-            title: e.target.value,
+            title: newName,
             todos: []
         };
+        console.log(newTodoContainer)
         
-        let todoContainersTemp = [...todoContainers, newTodoContainer];
-        localStorage.setItem("todoContainers-"+name, JSON.stringify());
-        setTodoContainers(todoContainersTemp);
+        // let todoContainersTemp = [...todoContainers, newTodoContainer];
+        todoContainers.push(newTodoContainer);
+
+        localStorage.setItem("todoContainers-"+name, JSON.stringify(todoContainers));
+        setTodoContainers(todoContainers);
     }
 
 
     return (
         <div style={{ margin: '50px' }}>
-            <form onSubmit={addTodoContainer}>
+            <form>
                 <input
                     type="text"
                     placeholder="Add column..."
                     name="title"
+                    onChange={onChange}
                 />
-                <button>Submit</button>
+                <button onClick={addTodoContainer}>Submit</button>
             </form>
             <div>
                 {
@@ -41,6 +53,5 @@ const Board = (props) => {
         </div>
     )
 }
-
 
 export default Board;
