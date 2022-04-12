@@ -3,6 +3,7 @@ import React, { Component } from "react"
 class InputTodo extends Component {
   state = {
     title: "",
+    description: ""
   }
   onChange = e => {
     this.setState({
@@ -11,9 +12,10 @@ class InputTodo extends Component {
   }
   handleSubmit = e => {
     e.preventDefault();
-    this.props.addTodoProps(this.state.title);
+    this.props.addTodoProps(this.state);
     this.setState({
-        title: ""
+        title: "",
+        description: ""
     });
   };
 
@@ -22,9 +24,16 @@ class InputTodo extends Component {
       <form onSubmit={this.handleSubmit}>
         <input
           type="text"
-          placeholder="Add todo..."
+          placeholder="Add note title"
           value={this.state.title}
           name="title"
+          onChange={this.onChange}
+        />
+        <input
+          type="text"
+          placeholder="Add note details"
+          value={this.state.description}
+          name="description"
           onChange={this.onChange}
         />
         <button>Submit</button>
