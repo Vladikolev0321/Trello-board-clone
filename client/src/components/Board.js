@@ -16,7 +16,7 @@ const Board = (props) => {
     }
 
     const addTodoContainer = (e) => {
-        e.preventDefault();
+        // e.preventDefault();
         const newTodoContainer = {
             id: uuidv4(),
             title: newName,
@@ -27,6 +27,7 @@ const Board = (props) => {
         todoContainers.push(newTodoContainer);
         localStorage.setItem("todoContainers-"+name, JSON.stringify(todoContainers));
         setTodoContainers(todoContainers);
+        
     }
 
 
