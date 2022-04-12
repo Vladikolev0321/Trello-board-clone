@@ -1,17 +1,14 @@
 import React from "react";
 import {useState} from "react";
 
-function UsernameForm()
-{
+function UsernameForm() {
     const [username, setUsername] = useState("");
 
-    const onChange = (e) =>
-    {
+    const onChange = (e) => {
         setUsername(e.target.value);
     };
 
-    const onSubmit = (e) =>
-    {
+    const onSubmit = (e) => {
         e.preventDefault();
         localStorage.setItem("username", username);
         window.location.reload();
