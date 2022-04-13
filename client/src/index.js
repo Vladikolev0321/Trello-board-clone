@@ -7,8 +7,8 @@ import TodoContainer from './components/ToDoContainer';
 import UsernameForm from './components/UsernameForm';
 
 ReactDOM.render(
-  // <Board name="FirstBoard"/>,  
-  <UsernameForm></UsernameForm>,
+  <Board name="FirstBoard"/>,  
+  // <UsernameForm></UsernameForm>,
   document.getElementById('root')
 );
 

@@ -16,18 +16,15 @@ const Board = (props) => {
     }
 
     const addTodoContainer = (e) => {
-        // e.preventDefault();
         const newTodoContainer = {
             id: uuidv4(),
             title: newName,
             todos: []
         };
         console.log(newTodoContainer)
-        
-        todoContainers.push(newTodoContainer);
-        localStorage.setItem("todoContainers-"+name, JSON.stringify(todoContainers));
-        setTodoContainers(todoContainers);
-        
+        let todoContainersTemp = [...todoContainers, newTodoContainer];
+        localStorage.setItem("todoContainers-"+name, JSON.stringify(todoContainersTemp));
+        setTodoContainers(todoContainersTemp); 
     }
 
 
@@ -40,13 +37,13 @@ const Board = (props) => {
                     name="title"
                     onChange={onChange}
                 />
-                <button onClick={addTodoContainer}>Submit</button>
+                <button type="button" onClick={addTodoContainer}>Submit</button>
             </form>
             <div>
                 {
                     todoContainers.map(function(container){
                         console.log(container);
-                        return <TodoContainer key={container} todos={container.todos}></TodoContainer>
+                        return <TodoContainer key={container.id} todos={container.todos}></TodoContainer>
                     })
                 }
             </div>
