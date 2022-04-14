@@ -4,11 +4,11 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import Board from './components/Board';
 import TodoContainer from './components/ToDoContainer';
-import UsernameForm from './components/UsernameForm';
+import App from './components/App';
 
 ReactDOM.render(
-  <Board name="FirstBoard"/>,  
-  // <UsernameForm></UsernameForm>,
+  //<Board name="FirstBoard"/>,  
+  <App></App>,
   document.getElementById('root')
 );
 
