@@ -7,7 +7,7 @@ import { v4 as uuidv4 } from "uuid";
 class TodoContainer extends React.Component {
   state = {
     // todos: JSON.parse(localStorage.getItem("todos")) || []
-    todos: this.props.todos
+    todos: this.props.boardCtx.boards[this.props.boardIndex].columns[this.props.containerIndex].todos
    };
 
    handleChange = (id) => {
@@ -31,12 +31,21 @@ class TodoContainer extends React.Component {
     console.log("deleted", id);
 
 
+    // this.state.todos = [
+    //   ...this.state.todos.filter(todo => {
+    //     return todo.id !== id;
+    //   })
+    // ];
+    
+    this.state.todos = this.props.boardCtx.boards[this.props.boardIndex].columns[this.props.containerIndex].todos;
     this.state.todos = [
       ...this.state.todos.filter(todo => {
         return todo.id !== id;
       })
     ];
-    localStorage.setItem("todos", JSON.stringify(this.state.todos));
+    this.props.boardCtx.boards[this.props.boardIndex].columns[this.props.containerIndex].todos = this.state.todos;
+    console.log(this.props.boardCtx);
+    localStorage.setItem(this.props.boardCtx.username, JSON.stringify(this.props.boardCtx));
     this.setState(this.state.todos);
     
   };
@@ -48,9 +57,12 @@ class TodoContainer extends React.Component {
       description: prop["description"],
       completed: false
     };
-    
+    console.log(this.props.boardCtx.username);
+    this.state.todos = this.props.boardCtx.boards[this.props.boardIndex].columns[this.props.containerIndex].todos;
     this.state.todos = [...this.state.todos, newTodo];
-    localStorage.setItem("todos", JSON.stringify(this.state.todos));
+    this.props.boardCtx.boards[this.props.boardIndex].columns[this.props.containerIndex].todos = this.state.todos;
+    console.log(this.props.boardCtx);
+    localStorage.setItem(this.props.boardCtx.username, JSON.stringify(this.props.boardCtx));
     this.setState(this.state.todos);
     
     
@@ -58,12 +70,13 @@ class TodoContainer extends React.Component {
 
 
   render() {
+
     return (
       <div>
-        <Header />
+        <Header title={this.props.boardCtx.boards[this.props.boardIndex].columns[this.props.containerIndex].title} />
         <InputTodo addTodoProps={this.addTodoItem} />
         <TodosList 
-        todos={this.state.todos} 
+        todos={this.props.boardCtx.boards[this.props.boardIndex].columns[this.props.containerIndex].todos} 
         handleChangeProps={this.handleChange}
         deleteTodoProps={this.delTodo}/>
       </div>

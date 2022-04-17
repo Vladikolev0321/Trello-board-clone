@@ -1,49 +1,54 @@
 import React, { useState } from "react";
-import { v4 as uuidv4 } from "uuid";
+//import { v4 as uuidv4 } from "uuid";
 import TodoContainer from "./ToDoContainer";
 
 const Board = (props) => {
     const name = props.name;
+    const [newTable, setNewTable] = useState("");
     
-    const containerStorage = localStorage.getItem("todoContainers-"+name);
-    const [todoContainers, setTodoContainers] = useState(JSON.parse(containerStorage) || []);
+    //const containerStorage = localStorage.getItem("todoContainers-"+name);
+    let todoContainers = props.boardCtx.boards[props.boardIndex].columns;
 
-    const [newName, setNewName] = useState("")
+    
+    //const [newName, setNewName] = useState("")
 
     const onChange = (e) => {
         e.preventDefault();
-        setNewName(e.target.value)
-    }
+        setNewTable(e.target.value);
+    };
 
-    const addTodoContainer = (e) => {
-        const newTodoContainer = {
-            id: uuidv4(),
-            title: newName,
-            todos: []
-        };
-        console.log(newTodoContainer)
-        let todoContainersTemp = [...todoContainers, newTodoContainer];
-        localStorage.setItem("todoContainers-"+name, JSON.stringify(todoContainersTemp));
-        setTodoContainers(todoContainersTemp); 
+    const onSubmit = (e) => {
+
+        e.preventDefault();  
+        console.log(props.boardCtx.boards[props.boardIndex].boardName);
+        props.addTodoContainer(props.boardCtx.boards[props.boardIndex].boardName, newTable);
+
+        
     }
 
 
     return (
         <div style={{ margin: '50px' }}>
-            <form>
+            <h1> Viewing board {props.boardCtx.boards[props.boardIndex].boardName}</h1>
+            <form onSubmit={onSubmit}>
                 <input
                     type="text"
-                    placeholder="Add column..."
+                    placeholder="Add new table..."
                     name="title"
+                    value={newTable}
                     onChange={onChange}
                 />
-                <button type="button" onClick={addTodoContainer}>Submit</button>
+                <button>Submit</button>
             </form>
             <div>
                 {
-                    todoContainers.map(function(container){
+                    todoContainers.map(function(container, contIndex) {
                         console.log(container);
-                        return <TodoContainer key={container.id} todos={container.todos}></TodoContainer>
+                        return <TodoContainer key={container.id} 
+                        boardIndex={props.boardIndex} 
+                        containerIndex={contIndex} 
+                        boardCtx={props.boardCtx} 
+                       ></TodoContainer>
                     })
                 }
             </div>

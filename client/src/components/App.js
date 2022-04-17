@@ -3,11 +3,12 @@ import {useState} from "react";
 import { v4 as uuidv4 } from "uuid";
 import CreateBoard from "./CreateBoard";
 import BoardsList from "./BoardsList";
-
+import Board from "./Board";
 function App() {
     const [username, setUsername] = useState("");
     const [submitted, setSubmitted] = useState(false);
     const [userData, setUserData] = useState({});
+    const [selectedBoardIndex, setSelectedBoardIndex] = useState("");
 
     const onChange = (e) => {
         setUsername(e.target.value);
@@ -35,11 +36,12 @@ function App() {
 
         //window.location.reload();
     }
+    
 
     const addBoard = (boardName) => {
         const newBoard = {
             id: uuidv4(),
-            title: boardName,
+            boardName: boardName,
             columns: []
           };
           console.log(newBoard);
@@ -53,6 +55,38 @@ function App() {
           });
     }
 
+    const addTodoContainer = (boardName, newContainerName) => {
+        const newTodoContainer = {
+            id: uuidv4(),
+            title: newContainerName,
+            todos: []
+        };
+        console.log(newTodoContainer)
+        
+        console.log(boardName);
+        for (var i = 0; i < userData.boards.length; i++) {
+            console.log(userData.boards[i].boardName);
+            if(userData.boards[i].boardName === boardName) {
+                
+                userData.boards[i].columns = [...userData.boards[i].columns, newTodoContainer];
+                
+                localStorage.setItem(username, JSON.stringify(userData));
+                setUserData(userData);
+                setUserData({
+                    ...userData,
+                    boards: userData.boards,
+                    
+                });
+                break;
+            }
+        }
+    }
+    const selectBoard = (index) => {
+        console.log(index);
+        setSelectedBoardIndex(index);
+    }
+
+
     if(submitted === false) {
     return (
         <div>
@@ -64,9 +98,20 @@ function App() {
         </div>
     )
     } else {
-        return (<div><CreateBoard addBoard={addBoard} />
-                <BoardsList boards={userData.boards}/>
-            </div>)
+        
+        if(selectedBoardIndex === "") {
+            return (
+                <div>
+                    <CreateBoard addBoard={addBoard}/>
+                    <BoardsList boardCtx={userData} selectBoard={selectBoard}/>
+                </div>
+            )
+        } else {
+            return (<div><CreateBoard addBoard={addBoard} />
+                            <Board boardIndex={selectedBoardIndex} boardCtx={userData} addTodoContainer={addTodoContainer}/>
+                        </div>)
+        }
+        
     }
 }
 
