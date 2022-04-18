@@ -5,6 +5,7 @@ import TodoContainer from "./ToDoContainer";
 const Board = (props) => {
     const name = props.name;
     const [newTable, setNewTable] = useState("");
+    const [boardCtx, setBoardCtx] = useState(props.boardCtx);
     
     //const containerStorage = localStorage.getItem("todoContainers-"+name);
     let todoContainers = props.boardCtx.boards[props.boardIndex].columns;
@@ -26,6 +27,37 @@ const Board = (props) => {
         
     }
 
+    const onDragOver = ev => {
+        ev.preventDefault();
+      };
+    
+    const onDragStart = (ev, name) => {
+      
+        ev.dataTransfer.setData("id", JSON.stringify(name));
+      };
+    
+    const onDrop = (ev, cat) => {
+        const data = JSON.parse(ev.dataTransfer.getData("id"));
+
+
+        if(cat === data.origin) return;
+
+        let transferedItem = {
+          id: data.id,
+          title: data.title,
+          description: data.description,
+        }
+
+        props.boardCtx.boards[props.boardIndex].columns[cat].todos.push(transferedItem);
+        props.boardCtx.boards[props.boardIndex].columns[data.origin].todos = props.boardCtx.boards[props.boardIndex].columns[data.origin].todos.filter(todo => {
+          return todo.id !== data.id;
+        });
+
+        props.updateUserData(props.boardCtx);
+
+      };
+    
+      
 
     return (
         <div style={{ margin: '50px' }}>
@@ -47,7 +79,11 @@ const Board = (props) => {
                         return <TodoContainer key={container.id} 
                         boardIndex={props.boardIndex} 
                         containerIndex={contIndex} 
-                        boardCtx={props.boardCtx} 
+                        boardCtx={props.boardCtx}
+                        className="drop-area"
+                        onDragOver={e => onDragOver(e)}
+                        onDrop={onDrop}
+                        onDragStart={onDragStart}
                        ></TodoContainer>
                     })
                 }

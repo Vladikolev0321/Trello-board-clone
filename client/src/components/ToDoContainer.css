@@ -1,0 +1,62 @@
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 32px;
+   }
+  .drop-area {
+    background: rgba(0,0,0, 0.8);
+    min-height: 200px;
+    min-width: 340px;
+    margin: 5px;
+    padding-bottom: 20px;
+    width: 18%;
+    border-radius: 10px;
+    transition: all .5s;
+  
+    &:hover {
+      width: 36%;
+    }
+  }
+
+  
+  h1 {
+    color: #FB6964;
+    padding: 20px 0 0 20px;
+    font-size: 17px;
+    font-weight: 100;
+    letter-spacing: 2px;
+    font-weight: 100;
+  }
+
+.new-item-input {
+    border: 2px solid #FB6964;
+    display: block;
+    margin: 20px auto;
+    width: 300px;
+    height: 50px;
+    border-radius: 5px;
+    font-size: 16px;
+    padding-left: 25px;
+    background: rgba(255,255,255,0.8);
+    outline: none;
+    color: #000;
+    transition: all .5s ease;
+    
+  }
+
+  .submit-new-item {
+    border: 2px solid #FB6964;
+    display: block;
+    margin: 20px auto;
+    border-radius: 5px;
+    font-size: 16px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background: rgba(255,255,255,0.8);
+    outline: none;
+    color: #000;
+    transition: all .5s ease;
+}

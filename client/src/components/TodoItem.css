@@ -1,0 +1,21 @@
+.item-container {
+    padding: 15px;
+    background: rgba(15,89,89, 0.7);
+    margin: 20px;
+    color:   #fff;
+    font-weight: 100;
+    cursor: move;
+    cursor: grab;
+    border-radius: 4px;
+    transition: background .4s;
+    &:hover {
+      background: rgba(15,89,89, 0.9);
+    }
+   }
+
+.option-buttons {
+    background-color: "red";
+    color: white;
+    border-radius: 4px;
+
+}

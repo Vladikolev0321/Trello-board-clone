@@ -27,6 +27,7 @@ class InputTodo extends Component {
           placeholder="Add note title"
           value={this.state.title}
           name="title"
+          className="new-item-input"
           onChange={this.onChange}
         />
         <input
@@ -34,9 +35,10 @@ class InputTodo extends Component {
           placeholder="Add note details"
           value={this.state.description}
           name="description"
+          className="new-item-input"
           onChange={this.onChange}
         />
-        <button>Submit</button>
+        <button className="submit-new-item">Submit</button>
       </form>
     )
   }
