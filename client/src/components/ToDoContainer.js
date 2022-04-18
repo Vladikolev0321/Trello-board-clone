@@ -59,21 +59,15 @@ class TodoContainer extends React.Component {
     this.state.todos = this.props.boardCtx.boards[this.props.boardIndex].columns[this.props.containerIndex].todos;
     this.state.todos = [...this.state.todos, newTodo];
     this.props.boardCtx.boards[this.props.boardIndex].columns[this.props.containerIndex].todos = this.state.todos;
-    
     this.props.boardCtx.tasks.push(newTodo);
-
     this.props.updateUserData(this.props.boardCtx);
-
     console.log(this.props.boardCtx);
     localStorage.setItem(this.props.boardCtx.username, JSON.stringify(this.props.boardCtx));
     this.setState(this.state.todos);
-    
-    
   };
 
 
   render() {
-
     return (
       <div className="drop-area"
       onDragOver={e => this.props.onDragOver(e)}
@@ -89,8 +83,6 @@ class TodoContainer extends React.Component {
         containerIndex={this.props.containerIndex}
             />
       </div>
-
-
     )
   }
 }

@@ -9,7 +9,6 @@ function CreateBoard(props) {
     };
 
     const onSubmit = (e) => {
-
         e.preventDefault();  
         props.addBoard(boardName);
         console.log(boardName);
