@@ -1,11 +1,11 @@
   .container {
     display: flex;
-    justify-content: center;
+    flex-direction: row;
     align-items: flex-start;
     padding-top: 32px;
    }
   .drop-area {
-    background: rgba(0,0,0, 0.8);
+    background: rgba(230, 210, 253, 0.8);
     min-height: 200px;
     min-width: 340px;
     margin: 5px;
@@ -13,29 +13,24 @@
     width: 18%;
     border-radius: 10px;
     transition: all .5s;
-  
-    &:hover {
-      width: 36%;
-    }
   }
 
   
-  h1 {
-    color: #FB6964;
-    padding: 20px 0 0 20px;
-    font-size: 17px;
-    font-weight: 100;
-    letter-spacing: 2px;
-    font-weight: 100;
+  h2 {
+    margin-top: 0.5rem;
+    margin-top: 1rem;
+    font-weight: 400;
+    text-align: center;
+    text-align: center;
   }
 
 .new-item-input {
-    border: 2px solid #FB6964;
+    border: 2px solid #25709b;
     display: block;
     margin: 20px auto;
     width: 300px;
     height: 50px;
-    border-radius: 5px;
+    border-radius: 15px;
     font-size: 16px;
     padding-left: 25px;
     background: rgba(255,255,255,0.8);
@@ -46,16 +41,16 @@
   }
 
   .submit-new-item {
-    border: 2px solid #FB6964;
+    border: 2px solid #30698a;
     display: block;
     margin: 20px auto;
-    border-radius: 5px;
+    border-radius: 20px;
     font-size: 16px;
     padding-left: 20px;
     padding-right: 20px;
     padding-top: 5px;
     padding-bottom: 5px;
-    background: rgba(255,255,255,0.8);
+    background-color: rgba(247, 247, 247, 0.8);
     outline: none;
     color: #000;
     transition: all .5s ease;

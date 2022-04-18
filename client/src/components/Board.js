@@ -67,7 +67,7 @@ const Board = (props) => {
                 />
                 <button>Submit</button>
             </form>
-            <div>
+            <div class="container">
                 {
                     todoContainers.map(function(container, contIndex) {
                         console.log(container);

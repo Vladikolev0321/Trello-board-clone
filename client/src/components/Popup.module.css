@@ -12,11 +12,12 @@
   .popup {
     margin: 70px auto;
     padding: 20px;
-    background: #fff;
+    background: rgb(234, 238, 255);
     border-radius: 5px;
-    width: 30%;
+    width: 25vw;
+    height: 50vh;
     position: relative;
-    transition: all 5s ease-in-out;
+    transition: all 3s ease-in-out;
   }
   
   .popup h2 {

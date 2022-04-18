@@ -1,6 +1,5 @@
 import React from "react";
 import {useState} from "react";
-
 function CreateBoard(props) {
     const [boardName, setBoardName] = useState("");
 
@@ -17,10 +16,10 @@ function CreateBoard(props) {
 
     return (
         <div>
+            <h1>Please enter board name</h1>
             <form>
-                <h2>Please enter board name</h2>
                 <input type="text" name="nickname" placeholder="Enter board name" value={boardName} onChange={onChange}/>
-                <input type="button" value="Submit" onClick={onSubmit}/>
+                <button type="sumbit" onClick={onSubmit}> Submit </button>
             </form>
         </div>
     )

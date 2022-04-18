@@ -132,7 +132,7 @@ function App() {
     return (
         <div className="deadcenter">
             <form>
-                <h2>Who are you?</h2>
+                <h1>Who are you?</h1>
                 <input type="text" name="nickname" className="new-item-input" style={{"float":"left", "clear":"right"}} placeholder="Enter your username" value={username} onChange={onChange}/>
                 <input type="button" value="Submit" style={{"float":"right"}} onClick={onSubmit}/>
             </form>
