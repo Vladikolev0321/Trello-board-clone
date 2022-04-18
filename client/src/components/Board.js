@@ -47,7 +47,8 @@ const Board = (props) => {
                         return <TodoContainer key={container.id} 
                         boardIndex={props.boardIndex} 
                         containerIndex={contIndex} 
-                        boardCtx={props.boardCtx} 
+                        boardCtx={props.boardCtx}
+                        setUserData={props.setUserData} 
                        ></TodoContainer>
                     })
                 }
