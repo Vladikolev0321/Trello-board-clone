@@ -29,13 +29,6 @@ class TodoContainer extends React.Component {
 
   delTodo = id => {
     console.log("deleted", id);
-
-
-    // this.state.todos = [
-    //   ...this.state.todos.filter(todo => {
-    //     return todo.id !== id;
-    //   })
-    // ];
     
     this.state.todos = this.props.boardCtx.boards[this.props.boardIndex].columns[this.props.containerIndex].todos;
     this.state.todos = [
@@ -45,7 +38,12 @@ class TodoContainer extends React.Component {
     ];
     this.props.boardCtx.boards[this.props.boardIndex].columns[this.props.containerIndex].todos = this.state.todos;
     console.log(this.props.boardCtx);
+
+    this.props.boardCtx.tasks = this.props.boardCtx.tasks.filter(task => task.id !== id);
+
     localStorage.setItem(this.props.boardCtx.username, JSON.stringify(this.props.boardCtx));
+    this.props.updateUserData(this.props.boardCtx);
+
     this.setState(this.state.todos);
     
   };
@@ -61,6 +59,11 @@ class TodoContainer extends React.Component {
     this.state.todos = this.props.boardCtx.boards[this.props.boardIndex].columns[this.props.containerIndex].todos;
     this.state.todos = [...this.state.todos, newTodo];
     this.props.boardCtx.boards[this.props.boardIndex].columns[this.props.containerIndex].todos = this.state.todos;
+    
+    this.props.boardCtx.tasks.push(newTodo);
+
+    this.props.updateUserData(this.props.boardCtx);
+
     console.log(this.props.boardCtx);
     localStorage.setItem(this.props.boardCtx.username, JSON.stringify(this.props.boardCtx));
     this.setState(this.state.todos);

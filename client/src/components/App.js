@@ -5,6 +5,8 @@ import CreateBoard from "./CreateBoard";
 import BoardsList from "./BoardsList";
 import Board from "./Board";
 import UserSelector from "./UserSelector";
+import RecentTasks from "./RecentTasks";
+
 function App() {
     const [username, setUsername] = useState("");
     const [submitted, setSubmitted] = useState(false);
@@ -50,6 +52,7 @@ function App() {
         
         let state = {
             boards: [],
+            tasks: [],
             username: username
         };
         //check if username is in local storage
@@ -121,11 +124,11 @@ function App() {
         setSelectedBoardIndex(index);
     }
 
+
     const updateUserData = (userData) => {
         localStorage.setItem(username, JSON.stringify(userData));
         setUserData({...userData});
-        //window.location.reload();
-        //forceUpdate();
+
     }
 
 
@@ -153,11 +156,17 @@ function App() {
             return (<div>
                 <UserSelector currentUsername={username} changeUsername={changeUsername}/>
                 <CreateBoard addBoard={addBoard} />
+
                             <Board boardIndex={selectedBoardIndex} boardCtx={userData} updateUserData={updateUserData} addTodoContainer={addTodoContainer}/>
-                        </div>)
-        }
+
+                <RecentTasks userData={userData}/>
+                </div>        
+                    )
+                
+
         
     }
+}
 }
 
 export default App;

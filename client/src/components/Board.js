@@ -84,7 +84,8 @@ const Board = (props) => {
                         onDragOver={e => onDragOver(e)}
                         onDrop={onDrop}
                         onDragStart={onDragStart}
-                       ></TodoContainer>
+                        updateUserData={props.updateUserData}>
+                        </TodoContainer>
                     })
                 }
             </div>
