@@ -14,14 +14,9 @@ export default function TodoItem(props) {
 
     <div>
       <div className="item-container" draggable onDragStart={e => props.onDragStart(e, {id: props.id, title: props.todo.title, description: props.todo.description, origin: props.containerIndex})}>
-     {/* <input 
-     type="checkbox" 
-     checked={props.todo.completed} 
-     onChange={() => props.handleChangeProps(props.todo.id)}/>   */}
       <a onClick={() => props.deleteTodoProps(props.todo.id)}><MdDeleteForever style={{"backgroundColor": "red", "color":"white", "borderRadius":"4px"}} size={20}/></a>
       <a onClick={() => setVisibility(!visibility)}><MdOpenWith style={{"backgroundColor": "blue", "color":"white", "borderRadius":"4px"}} size={20}/></a>
       <div>{props.todo.title}</div>
-        
      </div>
      <Popup 
           onClose={popupCloseHandler}
