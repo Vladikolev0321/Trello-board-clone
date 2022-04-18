@@ -6,6 +6,7 @@ import BoardsList from "./BoardsList";
 import Board from "./Board";
 import UserSelector from "./UserSelector";
 import RecentTasks from "./RecentTasks";
+import { Button } from 'react-bootstrap';
 
 function App() {
     const [username, setUsername] = useState("");
@@ -93,7 +94,7 @@ function App() {
     }
 
     const addTodoContainer = (boardName, newContainerName) => {
-        if(boardName === "" || newContainerName=="") return;
+        if(boardName === "" || newContainerName==="") return;
         const newTodoContainer = {
             id: uuidv4(),
             title: newContainerName,
@@ -134,11 +135,11 @@ function App() {
 
     if(submitted === false) {
     return (
-        <div>
+        <div className="deadcenter">
             <form>
-                <h2>Please enter your username</h2>
-                <input type="text" name="nickname" placeholder="Enter your username" value={username} onChange={onChange}/>
-                <input type="button" value="Submit" onClick={onSubmit}/>
+                <h2>Who are you?</h2>
+                <input type="text" name="nickname" className="new-item-input" style={{"float":"left", "clear":"right"}} placeholder="Enter your username" value={username} onChange={onChange}/>
+                <input type="button" value="Submit" style={{"float":"right"}} onClick={onSubmit}/>
             </form>
         </div>
     )
@@ -159,7 +160,7 @@ function App() {
 
                             <Board boardIndex={selectedBoardIndex} boardCtx={userData} updateUserData={updateUserData} addTodoContainer={addTodoContainer}/>
 
-                <RecentTasks userData={userData}/>
+
                 </div>        
                     )
                 

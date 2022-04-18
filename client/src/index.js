@@ -5,9 +5,10 @@ import reportWebVitals from './reportWebVitals';
 import Board from './components/Board';
 import TodoContainer from './components/ToDoContainer';
 import App from './components/App';
-
+//import 'bootstrap/dist/css/bootstrap.min.css';
 ReactDOM.render(
   //<Board name="FirstBoard"/>,  
+  
   <App></App>,
   document.getElementById('root')
 );
