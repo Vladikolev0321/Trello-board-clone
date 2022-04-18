@@ -1,6 +1,24 @@
 import React, { useEffect, useState } from "react";
+import TodosList from "./TodosList";
 
 export default function RecentTasks(props) {
+
+    const handleChange = (id) => {
+        console.log("clicked");
+    
+        this.setState(prevState => ({
+          todos: prevState.todos.map(todo => {
+            if (todo.id === id) {
+              return {
+                ...todo,
+                completed: !todo.completed,
+              }
+            }
+            return todo
+          }),
+        }))
+        
+      };
 
     return (
         <div>
@@ -10,12 +28,9 @@ export default function RecentTasks(props) {
                 </span>
                 <div>
                 <ul>
-                    {props.userData.tasks.map((task) => (
-                    <li key={task.id}>
-                        <span>{task.title}</span>
-                        <span>{task.description}</span>
-                    </li>
-                    ))}
+                    <TodosList 
+                    todos={props.userData.tasks} 
+                    handleChangeProps={handleChange}/>
                 </ul>
                 </div>
             </div>
