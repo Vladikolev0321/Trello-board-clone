@@ -58,7 +58,6 @@ function App() {
         };
         //check if username is in local storage
         if (localStorage.getItem(username) === null) {
-            //if not, add it
             localStorage.setItem(username, JSON.stringify(state));  
             localStorage.setItem("currentUsername", username);
             setUserData(state);
@@ -68,10 +67,6 @@ function App() {
         console.log(state)
         
         setUserData(state);
-
-        
-
-        //window.location.reload();
     }
     
 

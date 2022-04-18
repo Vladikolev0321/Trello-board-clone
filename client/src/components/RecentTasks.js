@@ -4,8 +4,6 @@ import TodosList from "./TodosList";
 export default function RecentTasks(props) {
 
     const handleChange = (id) => {
-        console.log("clicked");
-    
         this.setState(prevState => ({
           todos: prevState.todos.map(todo => {
             if (todo.id === id) {

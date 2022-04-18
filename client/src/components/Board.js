@@ -6,12 +6,7 @@ const Board = (props) => {
     const name = props.name;
     const [newTable, setNewTable] = useState("");
     const [boardCtx, setBoardCtx] = useState(props.boardCtx);
-    
-    //const containerStorage = localStorage.getItem("todoContainers-"+name);
     let todoContainers = props.boardCtx.boards[props.boardIndex].columns;
-
-    
-    //const [newName, setNewName] = useState("")
 
     const onChange = (e) => {
         e.preventDefault();
@@ -57,8 +52,6 @@ const Board = (props) => {
 
       };
     
-      
-
     return (
         <div >
             <h1> Viewing board {props.boardCtx.boards[props.boardIndex].boardName}</h1>
