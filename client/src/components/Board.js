@@ -2,6 +2,8 @@ import React, { useState } from "react";
 //import { v4 as uuidv4 } from "uuid";
 import TodoContainer from "./ToDoContainer";
 import { Row } from 'react-bootstrap';
+import Search from './Search';
+
 const Board = (props) => {
     const name = props.name;
     const [newTable, setNewTable] = useState("");
@@ -53,7 +55,7 @@ const Board = (props) => {
       };
     
     return (
-        <div >
+        <div>
             <h1> Viewing board {props.boardCtx.boards[props.boardIndex].boardName}</h1>
             <form onSubmit={onSubmit}>
                 <input
@@ -82,7 +84,9 @@ const Board = (props) => {
                     })
                 }
             </div>
+            <Search boardCtx={props.boardCtx}/>
         </div>
+        
     )
 }
 
