@@ -3,7 +3,7 @@ import Popup from "./Popup";
 import './TodoItem.css';
 import { MdDeleteForever } from "react-icons/md";
 import { MdOpenWith } from "react-icons/md";
-export default function TodoItem(props) {
+function TodoItem(props) {
   const [visibility, setVisibility] = useState(false);
 
   const popupCloseHandler = (e) => {
@@ -32,3 +32,5 @@ export default function TodoItem(props) {
      
   )
 }
+
+export default TodoItem;

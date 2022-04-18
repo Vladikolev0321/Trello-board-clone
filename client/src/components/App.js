@@ -6,12 +6,13 @@ import BoardsList from "./BoardsList";
 import Board from "./Board";
 import UserSelector from "./UserSelector";
 import RecentTasks from "./RecentTasks";
+import LogIn from './LogIn.js';
 
 function App() {
+    const [selectedBoardIndex, setSelectedBoardIndex] = useState("");
     const [username, setUsername] = useState("");
     const [submitted, setSubmitted] = useState(false);
     const [userData, setUserData] = useState({});
-    const [selectedBoardIndex, setSelectedBoardIndex] = useState("");
 
     useEffect(() => {
         if (localStorage.getItem("currentUsername") !== null && username === "") {
@@ -23,50 +24,6 @@ function App() {
             console.log("reloading");
         }
     })
-    const onChange = (e) => {
-        setUsername(e.target.value);
-    };
-
-    const changeUsername = (newUser) => {
-
-        if(newUser === "") {
-            //logout
-            console.log("logging out");
-            setUsername("");
-            setSubmitted(false);
-            setUserData({});
-            return;
-        }
-        localStorage.setItem("currentUsername", newUser);
-        setUsername(newUser)
-        setSubmitted(true);
-        setUserData(JSON.parse(localStorage.getItem(newUser)) == null ?  {boards: [],
-            username: newUser} : JSON.parse(localStorage.getItem(newUser)) );
-        setSelectedBoardIndex("");
-    }
-
-    const onSubmit = (e) => {
-        e.preventDefault();
-        if(username === "") return;
-        setSubmitted(true);
-        
-        let state = {
-            boards: [],
-            tasks: [],
-            username: username
-        };
-        //check if username is in local storage
-        if (localStorage.getItem(username) === null) {
-            localStorage.setItem(username, JSON.stringify(state));  
-            localStorage.setItem("currentUsername", username);
-            setUserData(state);
-            return;
-        }
-        state = JSON.parse(localStorage.getItem(username));  
-        console.log(state)
-        
-        setUserData(state);
-    }
     
 
     const addBoard = (boardName) => {
@@ -88,7 +45,7 @@ function App() {
     }
 
     const addTodoContainer = (boardName, newContainerName) => {
-        if(boardName === "" || newContainerName=="") return;
+        if(boardName === "" || newContainerName === "") return;
         const newTodoContainer = {
             id: uuidv4(),
             title: newContainerName,
@@ -125,43 +82,27 @@ function App() {
         setUserData({...userData});
 
     }
-
-
-    if(submitted === false) {
     return (
-        <div>
-            <form>
-                <h2>Please enter your username</h2>
-                <input type="text" name="nickname" placeholder="Enter your username" value={username} onChange={onChange}/>
-                <input type="button" value="Submit" onClick={onSubmit}/>
-            </form>
-        </div>
+        <LogIn></LogIn>
     )
-    } else {
-        
-        if(selectedBoardIndex === "") {
-            return (
-                <div>
-                    <UserSelector currentUsername={username} changeUsername={changeUsername}/>
-                    <CreateBoard addBoard={addBoard}/>
-                    <BoardsList boardCtx={userData} selectBoard={selectBoard}/>
-                </div>
-            )
-        } else {
-            return (<div>
-                <UserSelector currentUsername={username} changeUsername={changeUsername}/>
-                <CreateBoard addBoard={addBoard} />
 
-                            <Board boardIndex={selectedBoardIndex} boardCtx={userData} updateUserData={updateUserData} addTodoContainer={addTodoContainer}/>
-
-                <RecentTasks userData={userData}/>
-                </div>        
-                    )
-                
-
-        
-    }
-}
+    // } else {
+    //     if(selectedBoardIndex === "") {
+    //         return (
+    //             <div>
+    //                 <CreateBoard addBoard={addBoard}/>
+    //                 <BoardsList boardCtx={userData} selectBoard={selectBoard}/>
+    //             </div>
+    //         )
+    //     } else {
+    //         return (
+    //         <div>
+    //             <CreateBoard addBoard={addBoard} />
+    //             <Board boardIndex={selectedBoardIndex} boardCtx={userData} updateUserData={updateUserData} addTodoContainer={addTodoContainer}/>
+    //             <RecentTasks userData={userData}/>
+    //         </div>        
+    //     )
+    // }
 }
 
 export default App;
