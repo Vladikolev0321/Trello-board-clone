@@ -17,7 +17,7 @@ class UserSelector extends Component {
 
   render() {
     return (
-    <div><h2>Current user</h2>
+    <div><h1>Current user</h1>
       <form onSubmit={this.handleSubmit}>
         <input
           type="text"

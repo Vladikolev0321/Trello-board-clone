@@ -11,10 +11,9 @@ function BoardsList(props) {
     return (
         <ul>
           {props.boardCtx.boards.map((board, index) => (
-            <div key={board.id}><div>{board.boardName}</div>
+            <div key={board.id}><h1>{board.boardName}</h1>
             <button value={index} onClick={selectBoard}>Select</button>
-      
-              </div>
+            </div>
             
           ))}
         </ul>
